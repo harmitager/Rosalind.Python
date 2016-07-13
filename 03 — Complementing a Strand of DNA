@@ -1,0 +1,3 @@
+s = 'AAAACCCGGT'
+replacement = dict({'A':'T','C':'G','G':'C','T':'A'})
+''.join(replacement[x] for x in s)[::-1]
