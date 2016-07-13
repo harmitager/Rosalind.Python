@@ -1,5 +1,7 @@
 def f(n,k):
-    if n==0:
-            return k
+    if n==1:
+		return 1
+    if n==2:
+    	return 1
     else:
-            return f(n-1,k)+f(n-1,k)/2
+    	return f(n-1,k)+f(n-2,k)*k
