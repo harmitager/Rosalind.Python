@@ -1,0 +1,2 @@
+s = 'GATGGAACTTGACTACGTAAATT'
+s.replace('T','U')
