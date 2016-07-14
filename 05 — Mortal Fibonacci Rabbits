@@ -1,0 +1,11 @@
+ def f(n,m):
+	if n<=0:
+		return 0
+	if n==1:
+		return 1
+	if n<=m:
+		return f(n-1,m)+f(n-2,m)
+	else if n == m+1:
+		return f(n-1,m)+f(n-2,m)-1
+	else:
+		return f(n-1,m)+f(n-2,m)-f(n-m-1,m)
