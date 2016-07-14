@@ -1,11 +1,5 @@
- def f(n,m):
-	if n<=0:
-		return 0
-	if n==1:
-		return 1
-	if n<=m:
-		return f(n-1,m)+f(n-2,m)
-	else if n == m+1:
-		return f(n-1,m)+f(n-2,m)-1
-	else:
-		return f(n-1,m)+f(n-2,m)-f(n-m-1,m)
+def fib(n,m=1):
+  ages = [1] + [0]*(m-1)
+  for i in range(n-1):
+    ages = [sum(ages[1:])] + ages[:-1]
+return sum(ages)
