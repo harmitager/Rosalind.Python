@@ -1,0 +1,23 @@
+dna = ''
+dnas = list()
+foundations = ['A','C','G','T']
+fi = open('1.txt', 'r')
+for line in fi:
+    if line[0] == '>':
+        if len(dna) != 0:
+            dnas.append(dna.replace('\n', ''))
+            dna = ''
+    else:
+        dna += line
+dnas.append(dna.replace('\n',''))
+trans = map(list, zip(*dnas))
+profile = [map(lambda i: trans[i].count('A'), xrange(len(trans))),
+           map(lambda i: trans[i].count('C'), xrange(len(trans))),
+           map(lambda i: trans[i].count('G'), xrange(len(trans))),
+           map(lambda i: trans[i].count('T'), xrange(len(trans)))]
+trans = map(list,zip(*profile))
+print(''.join(map(lambda i: foundations[trans[i].index((max(trans[i])))],xrange(len(trans)))))
+print('A: ' + reduce(lambda x,y: str(x)+' '+str(y),profile[0]))
+print('C: ' + reduce(lambda x,y: str(x)+' '+str(y),profile[1]))
+print('G: ' + reduce(lambda x,y: str(x)+' '+str(y),profile[2]))
+print('T: ' + reduce(lambda x,y: str(x)+' '+str(y),profile[3]))
