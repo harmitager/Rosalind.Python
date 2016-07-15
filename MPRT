@@ -1,0 +1,9 @@
+import re
+from urllib import urlopen
+
+fi=open('1.txt','r')
+for s in fi:
+    x = reduce(lambda x, y: x + y, urlopen('http://www.uniprot.org/uniprot/' + s.replace('\n','') + '.fasta').read().split('\n')[1:])
+    if len([m.start() + 1 for m in re.finditer('N[^P][S|T][^P]', x)]) > 0:
+        print(s.replace('\n',''))
+        print(reduce(lambda x, y: str(x) + ' ' + str(y), [m.start() + 1 for m in re.finditer('(?=(N[^P][S|T][^P]))', x)]))
