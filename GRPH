@@ -1,0 +1,21 @@
+work = dict()
+
+dna = ''
+name = ''
+fi = open('1.txt', 'r')
+for line in fi:
+    if line[0] == '>':
+        if len(dna) == 0:
+            name = line.replace('\n', '')[1:]
+        else:
+            work[name] = dna.replace('\n', '')
+            name = line.replace('\n', '')[1:]
+            dna = ''
+    else:
+        dna += line
+work[name] = dna.replace('\n', '')
+
+for name1 in work:
+    for name2 in work:
+        if (work[name1][:3] == work[name2][-3:]) & (name1 != name2):
+            print(name2 + ' ' + name1)
