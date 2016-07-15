@@ -1,0 +1,2 @@
+[AAAA,AAAa,AAaa,AaAa,Aaaa,aaaa] = [17197, 16874, 16585, 18822, 16459, 19190]
+print(2*(AAAA+AAAa+AAaa+AaAa*0.75+Aaaa*0.5))
