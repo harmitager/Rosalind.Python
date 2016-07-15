@@ -1,0 +1,29 @@
+def f():
+    fi = open('1.txt', 'r')
+    max = 0.0
+    s = ''
+    maxs = ''
+    name = ''
+    for line in fi:
+        if line[0] == '>':
+            if len(s) == 0:
+                name = line
+            else:
+                s = s.replace('\n','')
+                if (s.count('G') + s.count('C') * 1.0) / (len(s) * 1.0) > max:
+                    max = (s.count('G') + s.count('C') * 1.0) / (len(s) * 1.0)
+                    maxs = name
+                s = ''
+                name = line
+        else:
+            s+=line
+    s = s.replace('\n', '')
+    if (s.count('G') + s.count('C') * 1.0) / (len(s) * 1.0) > max:
+        max = (s.count('G') + s.count('C') * 1.0) / (len(s) * 1.0)
+        maxs = name
+    s = ''
+    print(maxs)
+    print(max)
+    fi.close()
+
+f()
