@@ -1,0 +1,83 @@
+s = 'GCCTTCTGAGACATCATGGCGCGTAGGGTACTTTGTTCTACCCTAATCCAGATGCGGTAGTGCGTGTCTTATAATGGCTCCTAGCCCGGACGCGCCACACAGCAAAAGTGAACTCCACGGACGACCACCCAGTTAACCGCCCTTGGCCTTGGGTTGAAGTTTGACAGCAGGCGCAAGAGCCTATCCTAAACCCTTGGGTTCGTTTCCTCAGGTAAACCTAAGGTTAAGTTGCCCCCGGTTAAAGTTTGTTTTTGGGTTGTCCTCAGTAGGTCTTCTATCACGTCTTACGCTGTACTCCCGAGGCACATTTCATCGCCATGGCCGGGACATTCCAGATCTTAAGGACCACTGCCTCTAAGCCGAATAAAGCCATTTGTTTTAACTCCCACCGAGCACGCGATAAAAAATGACGTAACGAGCTCGACTCACGGGAGCATGGCGCAATGATTAAATTCAAAGAGATAGCTATCTCTTTGAATTTAATCATTGCGCCATAGCCTCGTAGCCGTAAAGGAACCGTCATCCGACCCTCTGCTTAGTGTCCAACACTGCACAGTTTACTTATAAGACGCTTTCGACCTCCTGAGTCGCAGCCGCACTCCTAGCGTAACTGGAATACAGTTAGTAGTTCTGGATCACAATGTTGGTCAAATTAATGTGATAAACACCGGTGCTCCTCGCAGGTAGTTTGCACCGAGGTCCATATTCCATAACGGGCGTGCGCATTCCCCGCTCCTAGCAATAAGACAGACTCATCTGGAAGCTTACACCCAACAGTTCGAATTTAACTTCGTAATAGCCATTTTACACGCCTGAGTGATTCAATTATCTCTCTATAAAATGTAGGGTTCCTGGATGACGAGTATCGAGGAAGTTAGGCTACTTGAGACTGGTAATAGTACCGTGGCAACAGCAACCTATATGTGCAGT'
+codons = dict(
+    {'UUU': 'F', 'CUU': 'L', 'AUU': 'I', 'GUU': 'V', 'UUC': 'F', 'CUC': 'L', 'AUC': 'I', 'GUC': 'V', 'UUA': 'L',
+     'CUA': 'L', 'AUA': 'I', 'GUA': 'V', 'UUG': 'L', 'CUG': 'L', 'AUG': 'M', 'GUG': 'V', 'UCU': 'S', 'CCU': 'P',
+     'ACU': 'T', 'GCU': 'A', 'UCC': 'S', 'CCC': 'P', 'ACC': 'T', 'GCC': 'A', 'UCA': 'S', 'CCA': 'P', 'ACA': 'T',
+     'GCA': 'A', 'UCG': 'S', 'CCG': 'P', 'ACG': 'T', 'GCG': 'A', 'UAU': 'Y', 'CAU': 'H', 'AAU': 'N', 'GAU': 'D',
+     'UAC': 'Y', 'CAC': 'H', 'AAC': 'N', 'GAC': 'D', 'UAA': 'Stop', 'CAA': 'Q', 'AAA': 'K', 'GAA': 'E', 'UAG': 'Stop',
+     'CAG': 'Q', 'AAG': 'K', 'GAG': 'E', 'UGU': 'C', 'CGU': 'R', 'AGU': 'S', 'GGU': 'G', 'UGC': 'C', 'CGC': 'R',
+     'AGC': 'S', 'GGC': 'G', 'UGA': 'Stop', 'CGA': 'R', 'AGA': 'R', 'GGA': 'G', 'UGG': 'W', 'CGG': 'R', 'AGG': 'R',
+     'GGG': 'G'})
+ans = set()
+start = list()
+stop = list()
+res = 1
+while res != 0:
+    res = s.find('ATG', res) + 1
+    if res != 0:
+        start.append(res - 1)
+res = 1
+while res != 0:
+    res = s.find('TAG', res) + 1
+    if res != 0:
+        stop.append(res - 1)
+res = 1
+while res != 0:
+    res = s.find('TGA', res) + 1
+    if res != 0:
+        stop.append(res - 1)
+res = 1
+while res != 0:
+    res = s.find('TAA', res) + 1
+    if res != 0:
+        stop.append(res - 1)
+
+tmp = ''
+
+for st in start:
+    for sp in stop:
+        test = s[st:sp + 3].replace('T','U')
+        for i in range(len(test) // 3):
+            tmp += (codons[test[i * 3] + test[i * 3 + 1] + test[i * 3 + 2]])
+        if (tmp.find('Stop') == len(tmp) - 4) & (tmp.find('Stop') != -1):
+            ans.add(tmp.replace('Stop',''))
+        tmp = ''
+
+start = list()
+stop = list()
+res = 1
+replacement = dict({'A':'T','C':'G','G':'C','T':'A'})
+s = ''.join(replacement[x] for x in s)[::-1]
+while res != 0:
+    res = s.find('ATG', res) + 1
+    if res != 0:
+        start.append(res - 1)
+res = 1
+while res != 0:
+    res = s.find('TAG', res) + 1
+    if res != 0:
+        stop.append(res - 1)
+res = 1
+while res != 0:
+    res = s.find('TGA', res) + 1
+    if res != 0:
+        stop.append(res - 1)
+res = 1
+while res != 0:
+    res = s.find('TAA', res) + 1
+    if res != 0:
+        stop.append(res - 1)
+
+tmp = ''
+
+for st in start:
+    for sp in stop:
+        test = s[st:sp + 3].replace('T','U')
+        for i in range(len(test) // 3):
+            tmp += (codons[test[i * 3] + test[i * 3 + 1] + test[i * 3 + 2]])
+        if (tmp.find('Stop')==len(tmp)-4) & (tmp.find('Stop')!=-1):
+            ans.add(tmp.replace('Stop', ''))
+        tmp = ''
+
+for item in ans:
+    print(item)
