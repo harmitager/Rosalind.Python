@@ -1,0 +1,12 @@
+DNAtransition = {'A':'G','G':'A','C':'T','T':'C'}
+
+def transRatio(s1, s2):
+    transition = 0
+    transversion = 0
+
+    for i in range(len(s1)):
+        if s1[i] == DNAtransition[s2[i]]:
+            transition += 1
+        elif s1[i] != s2[i]:
+            transversion += 1
+    return float(transition) / float(transversion)
