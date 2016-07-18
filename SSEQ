@@ -1,0 +1,7 @@
+def splicedMotif(s,t):
+    index = 0
+    ans = ''
+    for item in t:
+        index = s.find(item, index) + 1
+        ans += str(index) + ' '
+    return ans
