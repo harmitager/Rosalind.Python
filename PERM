@@ -1,0 +1,6 @@
+from math import factorial as f
+from itertools import permutations as p
+n = 7
+print(f(n))
+for item in p(range(1,n+1)):
+    print(reduce(lambda x,y: str(x)+' '+str(y), item))
