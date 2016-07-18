@@ -1,0 +1,42 @@
+dna = ''
+dnas = list()
+foundations = ['A', 'C', 'G', 'T']
+fi = open('1.txt', 'r')
+for line in fi:
+    if line[0] == '>':
+        if len(dna) != 0:
+            dnas.append(dna.replace('\n', ''))
+            dna = ''
+    else:
+        dna += line
+dnas.append(dna.replace('\n', ''))
+
+
+def append(data, res):
+    max = 0
+    imax = ''
+    x=''
+    if(data==list()):
+        return [list(),res]
+    for item in data:
+        if len(intersect(item, res)) > max:
+            max = len(intersect(item, res))
+            imax = item
+            x = res+item[max-len(item):]
+        if len(intersect(res, item)) > max:
+            max = len(intersect(res, item))
+            imax = item
+            x = item+res[max-len(res):]
+    data.remove(imax)
+    print(x)
+    return append(data,x)
+
+def intersect(s1, s2):
+    res = ''
+    for i in range(len(s1)):
+        if (s2.find(s1[:i]) == len(s2) - i) & (s2.find(s1[:i])!=-1):
+            res = s1[:i]
+    return res
+
+x = dnas.pop()
+print(append(dnas,x))
