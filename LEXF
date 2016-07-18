@@ -1,0 +1,12 @@
+from bio import formkmers
+
+fi = open('1.txt', 'r')
+alphabet = fi.readline().replace('\n', '').split(' ')
+length = int(fi.readline())
+
+def formkmers(alphabet, k):
+    if k == 0:
+        return ['']
+    return [smb + smbs for smb in alphabet for smbs in formkmers(alphabet, k - 1)]
+    
+print(''.join(item+' ' for item in formkmers(alphabet,length)))
