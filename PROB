@@ -1,0 +1,9 @@
+from math import log10 as l
+
+fi = open('1.txt','r')
+s = fi.readline()
+A = fi.readline().split(' ')
+print(A)
+for item in A:
+    num = float(item)
+    print(l(((1 - num) / 2) ** (s.count('A') + s.count('T')) * (num / 2) ** (s.count('C') + s.count('G'))))
