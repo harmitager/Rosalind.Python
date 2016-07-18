@@ -1,0 +1,3 @@
+from math import factorial as f
+s = 'GCGCCUGAACGUUUUAGAUACGCGCAUGUGCAUAUACAUGACAAGUAAAGUCUCGCAGUUGUUCACCAUG'
+print(f(s.count('C'))*f(s.count('A')))
