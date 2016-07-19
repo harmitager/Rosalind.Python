@@ -1,0 +1,4 @@
+def prefixSpectrum(L):
+    for i in range(1, len(L)):
+        s += [key for key in MonoisotopicWeight if round(MonoisotopicWeight[key]*100) == round((L[i] - L[i - 1])*100)][0]
+    print(s)
