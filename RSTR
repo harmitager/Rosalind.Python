@@ -1,0 +1,3 @@
+def motifProbability(s, n, x):
+    dna_prob = ((0.5 * x) ** (s.count('C') + s.count('G'))) * ((0.5 * (1 - x)) ** (s.count('T') + s.count('A')))
+    print(1 - (1 - dna_prob) ** n)
