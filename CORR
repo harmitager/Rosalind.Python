@@ -1,0 +1,18 @@
+def errorCorrection(dnas):
+    dset = set(dnas)
+    tmp = list(dset)
+
+    for item in dset:
+        if rev(item) in tmp:
+            tmp.remove(item)
+    dnas = map(lambda x: [dnas.count(x) + dnas.count(rev(x)), x], tmp)
+
+    correct = map(lambda x: x[1], filter(lambda x: x[0] > 1, dnas))
+    incorrect = map(lambda x: x[1], filter(lambda x: x[0] == 1, dnas))
+
+    for cor in correct:
+        for inc in incorrect:
+            if (h(cor, inc) == 1):
+                print(inc + '->' + cor)
+            elif (h(rev(cor), inc)) == 1:
+                print(inc + '->' + rev(cor))
