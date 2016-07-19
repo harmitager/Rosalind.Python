@@ -1,0 +1,14 @@
+def signedPermutations(n)
+    alphabet = map(lambda x: str(x) + ' ', range(-n, n + 1))
+    alphabet.remove('0 ')
+    count = 0
+    for item in formkmers(alphabet, n):
+        tmp = item.split(' ')[:-1]
+        tmp = map(lambda x: int(x), tmp)
+        for i in range(len(tmp)):
+            if tmp[i] < 0:
+                tmp[i] = -tmp[i]
+        if len(set(tmp)) == n:
+            print(item[:-1])
+            count += 1
+    print count
