@@ -1,0 +1,17 @@
+def kMP(s):
+    failure = list()
+    cnd = 0
+    i = 1
+    failure.append(0)
+    while i < len(s):
+        if s[i] == s[cnd]:
+            failure.append(cnd + 1)
+            cnd += 1
+            i += 1
+        elif cnd > 0:
+            cnd = failure[cnd - 1]
+        else:
+            failure.append(0)
+            i += 1
+
+    print(''.join(str(x) + ' ' for x in failure))
