@@ -1,0 +1,7 @@
+def restrictionSitesNumber(n, s, A):
+    gc = s.count('C') + s.count('G')
+    at = s.count('A') + s.count('T')
+    res = list()
+    for item in A:
+        res.append(((0.5 * item) ** gc) * ((0.5 * (1 - item)) ** at) * (n - len(s) + 1))
+    return ''.join(str(x) + ' ' for x in res)
