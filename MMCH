@@ -1,0 +1,6 @@
+def maximumMatchings(s):
+    lC = min(s.count('C'), s.count('G'))
+    gC = max(s.count('C'), s.count('G'))
+    lA = min(s.count('A'), s.count('U'))
+    gA = max(s.count('A'), s.count('U'))
+    print(f(gC) / f(gC - lC) * f(gA) / f(gA - lA))
